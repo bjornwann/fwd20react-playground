@@ -20,11 +20,11 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = React.useState(
+  const [searchTerm, setSearchTerm] = useState(
     localStorage.getItem('search') || 'React'
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('search', searchTerm);
   }, [searchTerm]);
 
@@ -89,10 +89,10 @@ const List = ({ list }) =>
     </div>
   );
 
-  const ButtonSort = props => 
-    props.list.map(item => (
+  const ButtonSort = ({list, onClick}) => 
+    list.map(item => (
       <span key={item.objectID}>
-      <button data-search={item.title} onClick={props.onClick}>{item.title}</button>
+      <button data-search={item.title} onClick={onClick}>{item.title}</button>
       </span>
   ));
 
@@ -135,9 +135,9 @@ const Timer = () => {
   );
 }
 
-const Timer = ({seconds}) => {
-    const [timeLeft, setTimeLeft] = React.useState(seconds);
-    React.useEffect(() => {
+const Timer2 = ({seconds}) => {
+    const [timeLeft, setTimeLeft] = useState(seconds);
+    useEffect(() => {
       if(!timeLeft) return;
       const intervalId = setInterval(() => {
         setTimeLeft(timeLeft -1);
